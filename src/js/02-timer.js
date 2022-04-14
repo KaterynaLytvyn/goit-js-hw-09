@@ -55,8 +55,10 @@ function addLeadingZero(value) {
 
 function onClick() {
   const timerId = setInterval(()=>{
-    const timeLeft = convertMs(chosenDate.getTime()-Date.now());
-    if (timeLeft.days == 0 && timeLeft.hours == 0 && timeLeft.minutes == 0 && timeLeft.seconds == 0) {
+    const diff = chosenDate.getTime()-Date.now()
+    const timeLeft = convertMs(diff);
+    
+    if (diff<1000) {
       clearInterval(timerId);
     }
     dataDaysElement.textContent = addLeadingZero(timeLeft.days);
